@@ -236,6 +236,12 @@
             <version>3.7.1</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.mousio</groupId>
+            <artifactId>etcd4j</artifactId>
+            <version>2.18.0</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -373,7 +379,7 @@
                                             </files>
                                             <message><![CDATA[Salesforce Migration Tool required
 
-You need to download the Salesforce Migration Tool (ZIP file) and 
+You need to download the Salesforce Migration Tool (ZIP file) and
 extract the `ant-salesforce.jar` out of it to:
 
 ${salesforce.component.root}/it/resources/migration-tool/ant-salesforce.jar

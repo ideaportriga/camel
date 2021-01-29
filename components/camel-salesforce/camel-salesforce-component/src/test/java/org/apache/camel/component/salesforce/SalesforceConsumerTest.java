@@ -79,6 +79,9 @@ public class SalesforceConsumerTest {
     }
 
     static final SubscriptionHelper NOT_USED = null;
+    static final SubscriptionHelper HELPER = mock(SubscriptionHelper.class);
+
+    static final EtcdReplayIdRepository ETCD_REPLAY_ID_REPOSITORY = mock(EtcdReplayIdRepository.class);
 
     SalesforceEndpointConfig configuration = new SalesforceEndpointConfig();
     SalesforceEndpoint endpoint = mock(SalesforceEndpoint.class);
@@ -144,7 +147,7 @@ public class SalesforceConsumerTest {
         when(endpoint.getTopicName()).thenReturn("AccountUpdates");
         configuration.setSObjectClass(AccountUpdates.class.getName());
 
-        final SalesforceConsumer consumer = new SalesforceConsumer(endpoint, processor, NOT_USED);
+        final SalesforceConsumer consumer = new SalesforceConsumer(endpoint, processor, NOT_USED, ETCD_REPLAY_ID_REPOSITORY);
 
         consumer.processMessage(mock(ClientSessionChannel.class), pushTopicMessage);
 
@@ -181,7 +184,7 @@ public class SalesforceConsumerTest {
         message.put("data", data);
         message.put("channel", "/event/TestEvent__e");
 
-        final SalesforceConsumer consumer = new SalesforceConsumer(endpoint, processor, NOT_USED);
+        final SalesforceConsumer consumer = new SalesforceConsumer(endpoint, processor, HELPER, ETCD_REPLAY_ID_REPOSITORY);
 
         consumer.processMessage(mock(ClientSessionChannel.class), message);
 
@@ -204,7 +207,7 @@ public class SalesforceConsumerTest {
     public void shouldProcessPushTopicMessages() throws Exception {
         when(endpoint.getTopicName()).thenReturn("AccountUpdates");
 
-        final SalesforceConsumer consumer = new SalesforceConsumer(endpoint, processor, NOT_USED);
+        final SalesforceConsumer consumer = new SalesforceConsumer(endpoint, processor, NOT_USED, ETCD_REPLAY_ID_REPOSITORY);
 
         consumer.processMessage(mock(ClientSessionChannel.class), pushTopicMessage);
 
@@ -226,7 +229,7 @@ public class SalesforceConsumerTest {
         when(endpoint.getTopicName()).thenReturn("AccountUpdates");
         configuration.setRawPayload(true);
 
-        final SalesforceConsumer consumer = new SalesforceConsumer(endpoint, processor, NOT_USED);
+        final SalesforceConsumer consumer = new SalesforceConsumer(endpoint, processor, NOT_USED, ETCD_REPLAY_ID_REPOSITORY);
 
         consumer.processMessage(mock(ClientSessionChannel.class), pushTopicMessage);
 
@@ -259,7 +262,7 @@ public class SalesforceConsumerTest {
         message.put("data", data);
         message.put("channel", "/event/TestEvent__e");
 
-        final SalesforceConsumer consumer = new SalesforceConsumer(endpoint, processor, NOT_USED);
+        final SalesforceConsumer consumer = new SalesforceConsumer(endpoint, processor, HELPER, ETCD_REPLAY_ID_REPOSITORY);
 
         consumer.processMessage(mock(ClientSessionChannel.class), message);
 
@@ -279,7 +282,7 @@ public class SalesforceConsumerTest {
     public void shouldProcessChangeEvents() throws Exception {
         when(endpoint.getTopicName()).thenReturn("/data/AccountChangeEvent");
 
-        final SalesforceConsumer consumer = new SalesforceConsumer(endpoint, processor, NOT_USED);
+        final SalesforceConsumer consumer = new SalesforceConsumer(endpoint, processor, NOT_USED, ETCD_REPLAY_ID_REPOSITORY);
 
         consumer.processMessage(mock(ClientSessionChannel.class), mockChangeEvent);
 
@@ -311,7 +314,7 @@ public class SalesforceConsumerTest {
         when(endpoint.getTopicName()).thenReturn("/data/AccountChangeEvent");
         when(mockChangeEventMap.get("replayId")).thenReturn(null);
 
-        final SalesforceConsumer consumer = new SalesforceConsumer(endpoint, processor, NOT_USED);
+        final SalesforceConsumer consumer = new SalesforceConsumer(endpoint, processor, NOT_USED, ETCD_REPLAY_ID_REPOSITORY);
 
         consumer.processMessage(mock(ClientSessionChannel.class), mockChangeEvent);
 
@@ -323,7 +326,7 @@ public class SalesforceConsumerTest {
         when(endpoint.getTopicName()).thenReturn("/data/AccountChangeEvent");
         configuration.setRawPayload(true);
 
-        final SalesforceConsumer consumer = new SalesforceConsumer(endpoint, processor, NOT_USED);
+        final SalesforceConsumer consumer = new SalesforceConsumer(endpoint, processor, NOT_USED, ETCD_REPLAY_ID_REPOSITORY);
 
         consumer.processMessage(mock(ClientSessionChannel.class), mockChangeEvent);
 

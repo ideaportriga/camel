@@ -57,6 +57,16 @@ public class SalesforceComponentConfigurer extends PropertyConfigurerSupport imp
         case "contentType": getOrCreateConfig(target).setContentType(property(camelContext, org.apache.camel.component.salesforce.api.dto.bulk.ContentType.class, value)); return true;
         case "defaultreplayid":
         case "defaultReplayId": getOrCreateConfig(target).setDefaultReplayId(property(camelContext, java.lang.Long.class, value)); return true;
+        case "etcdrepocachedepth":
+        case "etCdRepoCacheDepth": getOrCreateConfig(target).setEtCdRepoCacheDepth(property(camelContext, java.lang.String.class, value)); return true;
+        case "etcdrepopassword":
+        case "etcdRepoPassword": getOrCreateConfig(target).setEtcdRepoPassword(property(camelContext, java.lang.String.class, value)); return true;
+        case "etcdrepoplaceholdervalue":
+        case "etcdRepoPlaceholderValue": getOrCreateConfig(target).setEtcdRepoPlaceholderValue(property(camelContext, java.lang.String.class, value)); return true;
+        case "etcdrepouri":
+        case "etcdRepoUri": getOrCreateConfig(target).setEtcdRepoUri(property(camelContext, java.lang.String.class, value)); return true;
+        case "etcdrepousername":
+        case "etcdRepoUsername": getOrCreateConfig(target).setEtcdRepoUsername(property(camelContext, java.lang.String.class, value)); return true;
         case "format": getOrCreateConfig(target).setFormat(property(camelContext, org.apache.camel.component.salesforce.internal.PayloadFormat.class, value)); return true;
         case "httpclient":
         case "httpClient": getOrCreateConfig(target).setHttpClient(property(camelContext, org.apache.camel.component.salesforce.SalesforceHttpClient.class, value)); return true;
@@ -206,6 +216,16 @@ public class SalesforceComponentConfigurer extends PropertyConfigurerSupport imp
         case "contentType": return org.apache.camel.component.salesforce.api.dto.bulk.ContentType.class;
         case "defaultreplayid":
         case "defaultReplayId": return java.lang.Long.class;
+        case "etcdrepocachedepth":
+        case "etCdRepoCacheDepth": return java.lang.String.class;
+        case "etcdrepopassword":
+        case "etcdRepoPassword": return java.lang.String.class;
+        case "etcdrepoplaceholdervalue":
+        case "etcdRepoPlaceholderValue": return java.lang.String.class;
+        case "etcdrepouri":
+        case "etcdRepoUri": return java.lang.String.class;
+        case "etcdrepousername":
+        case "etcdRepoUsername": return java.lang.String.class;
         case "format": return org.apache.camel.component.salesforce.internal.PayloadFormat.class;
         case "httpclient":
         case "httpClient": return org.apache.camel.component.salesforce.SalesforceHttpClient.class;
@@ -356,6 +376,16 @@ public class SalesforceComponentConfigurer extends PropertyConfigurerSupport imp
         case "contentType": return getOrCreateConfig(target).getContentType();
         case "defaultreplayid":
         case "defaultReplayId": return getOrCreateConfig(target).getDefaultReplayId();
+        case "etcdrepocachedepth":
+        case "etCdRepoCacheDepth": return getOrCreateConfig(target).getEtCdRepoCacheDepth();
+        case "etcdrepopassword":
+        case "etcdRepoPassword": return getOrCreateConfig(target).getEtcdRepoPassword();
+        case "etcdrepoplaceholdervalue":
+        case "etcdRepoPlaceholderValue": return getOrCreateConfig(target).getEtcdRepoPlaceholderValue();
+        case "etcdrepouri":
+        case "etcdRepoUri": return getOrCreateConfig(target).getEtcdRepoUri();
+        case "etcdrepousername":
+        case "etcdRepoUsername": return getOrCreateConfig(target).getEtcdRepoUsername();
         case "format": return getOrCreateConfig(target).getFormat();
         case "httpclient":
         case "httpClient": return getOrCreateConfig(target).getHttpClient();

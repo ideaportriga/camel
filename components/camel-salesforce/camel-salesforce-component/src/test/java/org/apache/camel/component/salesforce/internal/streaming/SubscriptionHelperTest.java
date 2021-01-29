@@ -42,6 +42,17 @@ import static org.mockito.Mockito.when;
 
 public class SubscriptionHelperTest {
 
+    //    @BindToRegistry("replayIdStateRepo")
+    //    private ReplayIdStateRepository replayIdStateRepository;
+    //
+    //    private static final String REPLAY_ID_REPO_TOPIC = "my-topic-4";
+    //    private static final String REPLAY_ID_REPO_VALUE = "7";
+    //
+    //    @BeforeEach
+    //    public void setUp() throws Exception {
+    //        replayIdStateRepository = new ReplayIdStateRepository();
+    //    }
+
     @Test
     public void shouldSupportInitialConfigMapWithTwoKeySyntaxes() throws Exception {
         final Map<String, Long> initialReplayIdMap = new HashMap<>();
@@ -72,7 +83,7 @@ public class SubscriptionHelperTest {
     }
 
     @Test
-    public void precedenceShouldBeFollowed() {
+    public void precedenceShouldBeFollowed() throws Exception {
         final SalesforceEndpointConfig componentConfig = new SalesforceEndpointConfig();
         componentConfig.setDefaultReplayId(1L);
         componentConfig.setInitialReplayIdMap(Collections.singletonMap("my-topic-1", 2L));
@@ -89,6 +100,7 @@ public class SubscriptionHelperTest {
         when(endpoint.getReplayId()).thenReturn(null);
         when(endpoint.getComponent()).thenReturn(component);
         when(endpoint.getConfiguration()).thenReturn(endpointConfig);
+        //  when(endpoint.getReplayIdRepository()).thenReturn(replayIdStateRepository);
 
         assertEquals(Optional.of(5L), determineReplayIdFor(endpoint, "my-topic-1"),
                 "Expecting replayId for `my-topic-1` to be 5, as endpoint configuration has priority");
@@ -112,6 +124,15 @@ public class SubscriptionHelperTest {
                 "Expecting replayId for `my-topic-2` to be 6, as it is endpoint configured explicitly on the endpoint");
         assertEquals(Optional.of(6L), determineReplayIdFor(endpoint, "my-topic-3"),
                 "Expecting replayId for `my-topic-3` to be 6, as it is endpoint configured explicitly on the endpoint");
+
+        //        replayIdStateRepository.setState(REPLAY_ID_REPO_TOPIC, REPLAY_ID_REPO_VALUE);
+        //
+        //        when(endpoint.getReplayIdRepository()).thenReturn(replayIdStateRepository);
+        //        endpointConfig.setInitialReplayIdMap(Collections.singletonMap(REPLAY_ID_REPO_TOPIC, 5L));
+        //        endpointConfig.setDefaultReplayId(1L);
+        //
+        //        assertEquals(Optional.of(7L), determineReplayIdFor(endpoint, "my-topic-4"),
+        //                "Expecting replayId for `my-topic-4` to be 7, as endpoint configuration with the repository has priority");
     }
 
     @Test
@@ -166,4 +187,26 @@ public class SubscriptionHelperTest {
         assertNotNull(bayeuxClient);
         verify(session).login(null);
     }
+
+    //    public static class ReplayIdStateRepository implements StateRepository<String, String> {
+    //        @Override
+    //        public String getState(String topic) {
+    //            if (topic.equals(REPLAY_ID_REPO_TOPIC)) {
+    //                return REPLAY_ID_REPO_VALUE;
+    //            }
+    //            return null;
+    //        }
+    //
+    //        @Override
+    //        public void setState(String topic, String value) {
+    //        }
+    //
+    //        @Override
+    //        public void start() {
+    //        }
+    //
+    //        @Override
+    //        public void stop() {
+    //        }
+    //    }
 }

@@ -16,10 +16,7 @@
  */
 package org.apache.camel.component.salesforce;
 
-import org.apache.camel.Category;
-import org.apache.camel.Consumer;
-import org.apache.camel.Processor;
-import org.apache.camel.Producer;
+import org.apache.camel.*;
 import org.apache.camel.component.salesforce.internal.OperationName;
 import org.apache.camel.component.salesforce.internal.streaming.SubscriptionHelper;
 import org.apache.camel.spi.UriEndpoint;
@@ -91,7 +88,9 @@ public class SalesforceEndpoint extends DefaultEndpoint {
         }
 
         final SubscriptionHelper subscriptionHelper = getComponent().getSubscriptionHelper();
-        final SalesforceConsumer consumer = new SalesforceConsumer(this, processor, subscriptionHelper);
+        final EtcdReplayIdRepository etcdReplayIdRepository = getComponent().getEtcdReplayIdRepository();
+        final SalesforceConsumer consumer = new SalesforceConsumer(this, processor,
+                subscriptionHelper, etcdReplayIdRepository);
         configureConsumer(consumer);
         return consumer;
     }

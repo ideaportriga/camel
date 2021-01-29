@@ -16,10 +16,7 @@
  */
 package org.apache.camel.component.salesforce.internal.streaming;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -27,14 +24,11 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Stream;
 
 import org.apache.camel.CamelException;
-import org.apache.camel.component.salesforce.SalesforceComponent;
-import org.apache.camel.component.salesforce.SalesforceConsumer;
-import org.apache.camel.component.salesforce.SalesforceEndpoint;
-import org.apache.camel.component.salesforce.SalesforceEndpointConfig;
-import org.apache.camel.component.salesforce.SalesforceHttpClient;
+import org.apache.camel.component.salesforce.*;
 import org.apache.camel.component.salesforce.api.SalesforceException;
 import org.apache.camel.component.salesforce.internal.SalesforceSession;
 import org.apache.camel.support.service.ServiceSupport;
+import org.apache.camel.util.ObjectHelper;
 import org.cometd.bayeux.Message;
 import org.cometd.bayeux.client.ClientSessionChannel;
 import org.cometd.bayeux.client.ClientSessionChannel.MessageListener;
@@ -569,10 +563,15 @@ public class SubscriptionHelper extends ServiceSupport {
                 = componentInitialReplayIdMap.getOrDefault(topicName, componentInitialReplayIdMap.get(channelName));
         final Long componentDefaultReplayId = componentConfiguration.getDefaultReplayId();
 
+        final Long repositoryReplayId = getReplayIdFromRepoOrNull(endpoint, topicName);
+
         // the endpoint values have priority over component values, and the
         // default values posteriority
         // over give topic values
-        return Stream.of(replayId, endpointReplayId, componentReplayId, endpointDefaultReplayId, componentDefaultReplayId)
+        // replayId from the state repository has the highest priority of all
+        return Stream
+                .of(repositoryReplayId, replayId, endpointReplayId, componentReplayId, endpointDefaultReplayId,
+                        componentDefaultReplayId)
                 .filter(Objects::nonNull).findFirst();
     }
 
@@ -669,6 +668,26 @@ public class SubscriptionHelper extends ServiceSupport {
             }
         }
         return component.getSession().getInstanceUrl() + "/cometd/" + component.getConfig().getApiVersion();
+    }
+
+    protected static Long getReplayIdFromRepoOrNull(final SalesforceEndpoint endpoint, final String topicName) {
+        // we need a value from the repository or nothing
+        // so Stream could ignore it and choose other options or defaults
+        Long replayIdFromEtcdRepo = null;
+        if (ObjectHelper.isNotEmpty(endpoint.getConfiguration().getEtcdRepoUri())) {
+            try {
+                EtcdReplayIdRepository repository = endpoint.getComponent().getEtcdReplayIdRepository();
+                replayIdFromEtcdRepo = deserializeReplayIdValue(repository.getState(topicName));
+            } catch (Exception e) {
+                LOG.error("Tried to get value from ETCD repo for the topic {} but failed with error: {}", topicName, e.getMessage());
+            }
+        }
+        LOG.info("ReplayId from ECTD repo: {}", replayIdFromEtcdRepo);
+        return replayIdFromEtcdRepo;
+    }
+
+    protected static long deserializeReplayIdValue(String replayId) {
+        return Long.parseLong(replayId);
     }
 
 }

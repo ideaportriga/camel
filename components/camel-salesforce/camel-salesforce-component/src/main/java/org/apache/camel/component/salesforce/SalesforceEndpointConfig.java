@@ -84,6 +84,12 @@ public class SalesforceEndpointConfig implements Cloneable {
     public static final String INITIAL_REPLAY_ID_MAP = "initialReplayIdMap";
     public static final long REPLAY_FROM_TIP = -1L;
 
+    public static final String ETCD_REPO_URI = "ectdRepoUri";
+    public static final String ETCD_REPO_USERNAME = "ectdRepoUsername";
+    public static final String ETCD_REPO_PASSWORD = "ectdRepoPassword";
+    public static final String ETCD_REPO_CACHE_DEPTH = "ectdRepoCacheDepth";
+    public static final String ETCD_REPO_PLACEHOLDER_VALUE = "ectdRepoPlaceholderValue";
+
     // parameters for Approval API
     public static final String APPROVAL = "approval";
 
@@ -175,6 +181,16 @@ public class SalesforceEndpointConfig implements Cloneable {
     private Long defaultReplayId = REPLAY_FROM_TIP;
     @UriParam
     private Map<String, Long> initialReplayIdMap;
+    @UriParam(description = "ETCD repository URIs")
+    private String etcdRepoUri;
+    @UriParam(description = "ETCD repository username")
+    private String etcdRepoUsername;
+    @UriParam(description = "ETCD repository password")
+    private String etcdRepoPassword;
+    @UriParam(description = "ETCD repository cache size depth")
+    private String etCdRepoCacheDepth;
+    @UriParam(description = "ETCD repository field for testing")
+    private String etcdRepoPlaceholderValue;
 
     // Approval API properties
     private ApprovalRequest approval;
@@ -652,6 +668,11 @@ public class SalesforceEndpointConfig implements Cloneable {
         // add streaming API properties
         valueMap.put(DEFAULT_REPLAY_ID, defaultReplayId);
         valueMap.put(INITIAL_REPLAY_ID_MAP, initialReplayIdMap);
+        valueMap.put(ETCD_REPO_URI, etcdRepoUri);
+        valueMap.put(ETCD_REPO_USERNAME, etcdRepoUsername);
+        valueMap.put(ETCD_REPO_PASSWORD, etcdRepoPassword);
+        valueMap.put(ETCD_REPO_CACHE_DEPTH, etCdRepoCacheDepth);
+        valueMap.put(ETCD_REPO_PLACEHOLDER_VALUE, etcdRepoPlaceholderValue);
 
         valueMap.put(NOT_FOUND_BEHAVIOUR, notFoundBehaviour);
 
@@ -869,5 +890,45 @@ public class SalesforceEndpointConfig implements Cloneable {
      */
     public void setNotFoundBehaviour(final NotFoundBehaviour notFoundBehaviour) {
         this.notFoundBehaviour = notFoundBehaviour;
+    }
+
+    public String getEtcdRepoUri() {
+        return etcdRepoUri;
+    }
+
+    public void setEtcdRepoUri(String etcdRepoUri) {
+        this.etcdRepoUri = etcdRepoUri;
+    }
+
+    public String getEtcdRepoUsername() {
+        return etcdRepoUsername;
+    }
+
+    public void setEtcdRepoUsername(String etcdRepoUsername) {
+        this.etcdRepoUsername = etcdRepoUsername;
+    }
+
+    public String getEtcdRepoPassword() {
+        return etcdRepoPassword;
+    }
+
+    public void setEtcdRepoPassword(String etcdRepoPassword) {
+        this.etcdRepoPassword = etcdRepoPassword;
+    }
+
+    public String getEtCdRepoCacheDepth() {
+        return etCdRepoCacheDepth;
+    }
+
+    public void setEtCdRepoCacheDepth(String etCdRepoCacheDepth) {
+        this.etCdRepoCacheDepth = etCdRepoCacheDepth;
+    }
+
+    public String getEtcdRepoPlaceholderValue() {
+        return etcdRepoPlaceholderValue;
+    }
+
+    public void setEtcdRepoPlaceholderValue(String etcdRepoPlaceholderValue) {
+        this.etcdRepoPlaceholderValue = etcdRepoPlaceholderValue;
     }
 }
