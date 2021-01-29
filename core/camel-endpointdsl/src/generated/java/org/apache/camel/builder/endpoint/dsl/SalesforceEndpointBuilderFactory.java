@@ -3230,7 +3230,7 @@ public interface SalesforceEndpointBuilderFactory {
          * 
          * Category: cloud,api,crm
          * Since: 2.12
-         * Maven coordinates: org.apache.camel:camel-salesforce
+         * Maven coordinates: lv.ipr.camel:camel-salesforce
          * 
          * Syntax: <code>salesforce:operationName:topicName</code>
          * 
@@ -3263,7 +3263,7 @@ public interface SalesforceEndpointBuilderFactory {
          * 
          * Category: cloud,api,crm
          * Since: 2.12
-         * Maven coordinates: org.apache.camel:camel-salesforce
+         * Maven coordinates: lv.ipr.camel:camel-salesforce
          * 
          * Syntax: <code>salesforce:operationName:topicName</code>
          * 

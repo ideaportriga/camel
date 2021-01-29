@@ -36,7 +36,7 @@ public interface SalesforceComponentBuilderFactory {
      * 
      * Category: cloud,api,crm
      * Since: 2.12
-     * Maven coordinates: org.apache.camel:camel-salesforce
+     * Maven coordinates: lv.ipr.camel:camel-salesforce
      * 
      * @return the dsl builder
      */

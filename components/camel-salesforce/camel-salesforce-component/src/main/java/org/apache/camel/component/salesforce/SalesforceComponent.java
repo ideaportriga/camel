@@ -348,6 +348,8 @@ public class SalesforceComponent extends DefaultComponent implements SSLContextP
     protected void doStart() throws Exception {
         super.doStart();
 
+        LOG.warn("Starting CUSTOM Salesforce component");
+
         if (loginConfig == null) {
             loginConfig = new SalesforceLoginConfig();
             loginConfig.setInstanceUrl(instanceUrl);
