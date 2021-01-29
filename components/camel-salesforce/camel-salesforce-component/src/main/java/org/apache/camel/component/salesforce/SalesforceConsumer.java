@@ -235,7 +235,7 @@ public class SalesforceConsumer extends DefaultConsumer {
         if (replayId != null) {
             in.setHeader("CamelSalesforceReplayId", replayId);
             if (etcdReplayIdRepository.isStarted()) {
-                etcdReplayIdRepository.setState(topicName, (String) replayId);
+                etcdReplayIdRepository.setState(topicName, String.valueOf(replayId));
             }
         }
 

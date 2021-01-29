@@ -217,7 +217,7 @@ public interface SalesforceEndpointBuilderFactory {
             return this;
         }
         /**
-         * 1.
+         * ETCD repository cache size depth.
          * 
          * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
@@ -232,7 +232,7 @@ public interface SalesforceEndpointBuilderFactory {
             return this;
         }
         /**
-         * 1.
+         * ETCD repository password.
          * 
          * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
@@ -247,7 +247,7 @@ public interface SalesforceEndpointBuilderFactory {
             return this;
         }
         /**
-         * 1.
+         * ETCD repository field for testing.
          * 
          * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
@@ -262,7 +262,7 @@ public interface SalesforceEndpointBuilderFactory {
             return this;
         }
         /**
-         * 1.
+         * ETCD repository URIs.
          * 
          * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
@@ -276,7 +276,7 @@ public interface SalesforceEndpointBuilderFactory {
             return this;
         }
         /**
-         * 1.
+         * ETCD repository username.
          * 
          * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
@@ -1412,7 +1412,7 @@ public interface SalesforceEndpointBuilderFactory {
             return this;
         }
         /**
-         * 1.
+         * ETCD repository cache size depth.
          * 
          * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
@@ -1427,7 +1427,7 @@ public interface SalesforceEndpointBuilderFactory {
             return this;
         }
         /**
-         * 1.
+         * ETCD repository password.
          * 
          * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
@@ -1442,7 +1442,7 @@ public interface SalesforceEndpointBuilderFactory {
             return this;
         }
         /**
-         * 1.
+         * ETCD repository field for testing.
          * 
          * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
@@ -1457,7 +1457,7 @@ public interface SalesforceEndpointBuilderFactory {
             return this;
         }
         /**
-         * 1.
+         * ETCD repository URIs.
          * 
          * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
@@ -1471,7 +1471,7 @@ public interface SalesforceEndpointBuilderFactory {
             return this;
         }
         /**
-         * 1.
+         * ETCD repository username.
          * 
          * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
@@ -2537,7 +2537,7 @@ public interface SalesforceEndpointBuilderFactory {
             return this;
         }
         /**
-         * 1.
+         * ETCD repository cache size depth.
          * 
          * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
@@ -2552,7 +2552,7 @@ public interface SalesforceEndpointBuilderFactory {
             return this;
         }
         /**
-         * 1.
+         * ETCD repository password.
          * 
          * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
@@ -2567,7 +2567,7 @@ public interface SalesforceEndpointBuilderFactory {
             return this;
         }
         /**
-         * 1.
+         * ETCD repository field for testing.
          * 
          * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
@@ -2582,7 +2582,7 @@ public interface SalesforceEndpointBuilderFactory {
             return this;
         }
         /**
-         * 1.
+         * ETCD repository URIs.
          * 
          * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
@@ -2596,7 +2596,7 @@ public interface SalesforceEndpointBuilderFactory {
             return this;
         }
         /**
-         * 1.
+         * ETCD repository username.
          * 
          * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 

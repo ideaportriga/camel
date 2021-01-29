@@ -374,4 +374,3 @@ public interface EndpointBuilders
 
 }
 //CHECKSTYLE:ON
-

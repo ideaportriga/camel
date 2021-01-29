@@ -89,7 +89,8 @@ public class SalesforceEndpoint extends DefaultEndpoint {
 
         final SubscriptionHelper subscriptionHelper = getComponent().getSubscriptionHelper();
         final EtcdReplayIdRepository etcdReplayIdRepository = getComponent().getEtcdReplayIdRepository();
-        final SalesforceConsumer consumer = new SalesforceConsumer(this, processor,
+        final SalesforceConsumer consumer = new SalesforceConsumer(
+                this, processor,
                 subscriptionHelper, etcdReplayIdRepository);
         configureConsumer(consumer);
         return consumer;

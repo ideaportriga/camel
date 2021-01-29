@@ -6281,7 +6281,7 @@
     "supportLevel": "Stable",
     "groupId": "lv.ipr.camel",
     "artifactId": "camel-salesforce",
-    "version": "3.7.1-IPR",
+    "version": "3.7.1-IPR-0.4",
     "scheme": "salesforce",
     "extendsScheme": "",
     "syntax": "salesforce:operationName:topicName",

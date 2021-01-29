@@ -679,7 +679,8 @@ public class SubscriptionHelper extends ServiceSupport {
                 EtcdReplayIdRepository repository = endpoint.getComponent().getEtcdReplayIdRepository();
                 replayIdFromEtcdRepo = deserializeReplayIdValue(repository.getState(topicName));
             } catch (Exception e) {
-                LOG.error("Tried to get value from ETCD repo for the topic {} but failed with error: {}", topicName, e.getMessage());
+                LOG.error("Tried to get value from ETCD repo for the topic {} but failed with error: {}", topicName,
+                        e.getMessage());
             }
         }
         LOG.info("ReplayId from ECTD repo: {}", replayIdFromEtcdRepo);

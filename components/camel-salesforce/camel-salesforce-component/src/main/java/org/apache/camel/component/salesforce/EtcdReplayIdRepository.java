@@ -102,6 +102,23 @@ public class EtcdReplayIdRepository extends ServiceSupport implements StateRepos
                 }
             } catch (Exception e) {
                 LOG.error("Couldn't get value of the key {} from the ETCD store: {}", key, e.getMessage());
+                if (e.getMessage().contains("Key not found")) { // FIXME dirty hack for testing
+                    commitReplayId(key, "-1");
+
+                    try {
+                        EtcdKeyGetRequest request = client.get(key);
+                        request.timeout(5000, TimeUnit.MILLISECONDS);
+                        final EtcdKeysResponse response = request.send().get();
+                        if (Objects.nonNull(response.node)) {
+                            valueFromEtcd = response.node.value;
+                            return valueFromEtcd;
+                        }
+                    } catch (Exception exc) {
+                        LOG.error("Couldn't get value of the key even after putting it {} from the ETCD store: {}", key,
+                                e.getMessage());
+                    }
+                }
+
                 throw new RuntimeCamelException(e);
             }
 
@@ -117,10 +134,10 @@ public class EtcdReplayIdRepository extends ServiceSupport implements StateRepos
             // create the client if it's doesn't exist
             if (client == null) {
                 client = createClient(
-                        component.getConfig().getEtcdRepoUri(),
-                        component.getConfig().getEtcdRepoUsername(),
-                        component.getConfig().getEtcdRepoPassword());
+                        component.getConfig().getEtcdRepoUri());
             }
+
+            LOG.info("Client created");
             cache.clear();
             cacheCounter.set(CACHE_COUNTER_INITIAL_VALUE);
         }
@@ -131,6 +148,10 @@ public class EtcdReplayIdRepository extends ServiceSupport implements StateRepos
                 // without ssl context for now
                 new EtcdSecurityContext(username, password),
                 resolveURIs(uri));
+    }
+
+    public EtcdClient createClient(String uri) throws Exception {
+        return new EtcdClient(resolveURIs(uri));
     }
 
     public static URI[] resolveURIs(String uriList) throws Exception {

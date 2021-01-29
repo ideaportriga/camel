@@ -29,7 +29,7 @@
 
     <groupId>lv.ipr.camel</groupId>
     <artifactId>camel-salesforce</artifactId>
-    <version>3.7.1-IPR</version>
+    <version>3.7.1-IPR-0.4</version>
     <packaging>jar</packaging>
     <name>Camel :: Salesforce</name>
     <description>Camel Salesforce support</description>

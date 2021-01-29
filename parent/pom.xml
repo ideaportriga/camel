@@ -592,7 +592,7 @@
         <camel.osgi.private.pkg>!*</camel.osgi.private.pkg>
         <camel.osgi.export.pkg>$${replace;{local-packages};;;\;}</camel.osgi.export.pkg>
         <camel.osgi.export>${camel.osgi.export.pkg};-noimport:=true;${camel.osgi.version}</camel.osgi.export>
-        <camel.osgi.version>version=${project.version}</camel.osgi.version>
+        <camel.osgi.version>version=3.7.1</camel.osgi.version>
         <camel.osgi.import>${camel.osgi.import.pkg}</camel.osgi.import>
         <camel.osgi.dynamic />
         <camel.osgi.symbolic.name>${project.groupId}.${project.artifactId}</camel.osgi.symbolic.name>
@@ -603,8 +603,6 @@
         <camel.osgi.manifest>${project.build.outputDirectory}/META-INF/MANIFEST.MF</camel.osgi.manifest>
         <sourcecheckExcludes />
         <sourcecheckExcludesComma />
-
-        <project.version>3.7.1</project.version>
     </properties>
 
     <dependencyManagement>
