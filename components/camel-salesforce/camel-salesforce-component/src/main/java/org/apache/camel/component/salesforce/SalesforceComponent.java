@@ -252,6 +252,7 @@ public class SalesforceComponent extends DefaultComponent implements SSLContextP
 
     // Lazily created helper for consumer endpoints
     private SubscriptionHelper subscriptionHelper;
+    private EtcdReplayIdRepository etcdReplayIdRepository;
 
     public SalesforceComponent() {
         this(null);
@@ -347,6 +348,8 @@ public class SalesforceComponent extends DefaultComponent implements SSLContextP
     @Override
     protected void doStart() throws Exception {
         super.doStart();
+
+        LOG.warn("Starting CUSTOM Salesforce component");
 
         if (loginConfig == null) {
             loginConfig = new SalesforceLoginConfig();
@@ -455,6 +458,14 @@ public class SalesforceComponent extends DefaultComponent implements SSLContextP
             subscriptionHelper = new SubscriptionHelper(this);
         }
         return subscriptionHelper;
+    }
+
+    public EtcdReplayIdRepository getEtcdReplayIdRepository() throws Exception {
+        if (etcdReplayIdRepository == null) {
+            // lazily create ETCD repository
+            etcdReplayIdRepository = new EtcdReplayIdRepository(this);
+        }
+        return etcdReplayIdRepository;
     }
 
     public AuthenticationType getAuthenticationType() {

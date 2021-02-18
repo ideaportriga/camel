@@ -36,7 +36,7 @@ public interface SalesforceComponentBuilderFactory {
      * 
      * Category: cloud,api,crm
      * Since: 2.12
-     * Maven coordinates: org.apache.camel:camel-salesforce
+     * Maven coordinates: lv.ipr.camel:camel-salesforce
      * 
      * @return the dsl builder
      */
@@ -158,6 +158,81 @@ public interface SalesforceComponentBuilderFactory {
         default SalesforceComponentBuilder defaultReplayId(
                 java.lang.Long defaultReplayId) {
             doSetProperty("defaultReplayId", defaultReplayId);
+            return this;
+        }
+        /**
+         * ETCD repository cache size depth.
+         * 
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param etCdRepoCacheDepth the value to set
+         * @return the dsl builder
+         */
+        default SalesforceComponentBuilder etCdRepoCacheDepth(
+                java.lang.String etCdRepoCacheDepth) {
+            doSetProperty("etCdRepoCacheDepth", etCdRepoCacheDepth);
+            return this;
+        }
+        /**
+         * ETCD repository password.
+         * 
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param etcdRepoPassword the value to set
+         * @return the dsl builder
+         */
+        default SalesforceComponentBuilder etcdRepoPassword(
+                java.lang.String etcdRepoPassword) {
+            doSetProperty("etcdRepoPassword", etcdRepoPassword);
+            return this;
+        }
+        /**
+         * ETCD repository field for testing.
+         * 
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param etcdRepoPlaceholderValue the value to set
+         * @return the dsl builder
+         */
+        default SalesforceComponentBuilder etcdRepoPlaceholderValue(
+                java.lang.String etcdRepoPlaceholderValue) {
+            doSetProperty("etcdRepoPlaceholderValue", etcdRepoPlaceholderValue);
+            return this;
+        }
+        /**
+         * ETCD repository URIs.
+         * 
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param etcdRepoUri the value to set
+         * @return the dsl builder
+         */
+        default SalesforceComponentBuilder etcdRepoUri(
+                java.lang.String etcdRepoUri) {
+            doSetProperty("etcdRepoUri", etcdRepoUri);
+            return this;
+        }
+        /**
+         * ETCD repository username.
+         * 
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param etcdRepoUsername the value to set
+         * @return the dsl builder
+         */
+        default SalesforceComponentBuilder etcdRepoUsername(
+                java.lang.String etcdRepoUsername) {
+            doSetProperty("etcdRepoUsername", etcdRepoUsername);
             return this;
         }
         /**
@@ -1293,6 +1368,11 @@ public interface SalesforceComponentBuilderFactory {
             case "batchId": getOrCreateConfiguration((SalesforceComponent) component).setBatchId((java.lang.String) value); return true;
             case "contentType": getOrCreateConfiguration((SalesforceComponent) component).setContentType((org.apache.camel.component.salesforce.api.dto.bulk.ContentType) value); return true;
             case "defaultReplayId": getOrCreateConfiguration((SalesforceComponent) component).setDefaultReplayId((java.lang.Long) value); return true;
+            case "etCdRepoCacheDepth": getOrCreateConfiguration((SalesforceComponent) component).setEtCdRepoCacheDepth((java.lang.String) value); return true;
+            case "etcdRepoPassword": getOrCreateConfiguration((SalesforceComponent) component).setEtcdRepoPassword((java.lang.String) value); return true;
+            case "etcdRepoPlaceholderValue": getOrCreateConfiguration((SalesforceComponent) component).setEtcdRepoPlaceholderValue((java.lang.String) value); return true;
+            case "etcdRepoUri": getOrCreateConfiguration((SalesforceComponent) component).setEtcdRepoUri((java.lang.String) value); return true;
+            case "etcdRepoUsername": getOrCreateConfiguration((SalesforceComponent) component).setEtcdRepoUsername((java.lang.String) value); return true;
             case "format": getOrCreateConfiguration((SalesforceComponent) component).setFormat((org.apache.camel.component.salesforce.internal.PayloadFormat) value); return true;
             case "httpClient": getOrCreateConfiguration((SalesforceComponent) component).setHttpClient((org.apache.camel.component.salesforce.SalesforceHttpClient) value); return true;
             case "httpClientConnectionTimeout": ((SalesforceComponent) component).setHttpClientConnectionTimeout((long) value); return true;

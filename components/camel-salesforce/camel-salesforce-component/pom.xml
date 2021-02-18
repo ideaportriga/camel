@@ -27,7 +27,9 @@
         <version>3.7.2-SNAPSHOT</version>
     </parent>
 
+    <groupId>lv.ipr.camel</groupId>
     <artifactId>camel-salesforce</artifactId>
+    <version>3.7.1-IPR-0.4</version>
     <packaging>jar</packaging>
     <name>Camel :: Salesforce</name>
     <description>Camel Salesforce support</description>
@@ -49,6 +51,7 @@
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-core-engine</artifactId>
+            <version>3.7.1</version>
         </dependency>
 
         <dependency>
@@ -160,6 +163,7 @@
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-test-junit5</artifactId>
+            <version>3.7.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -170,6 +174,7 @@
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-csv</artifactId>
+            <version>3.7.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -228,7 +233,14 @@
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-core-catalog</artifactId>
+            <version>3.7.1</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mousio</groupId>
+            <artifactId>etcd4j</artifactId>
+            <version>2.18.0</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
@@ -253,6 +265,91 @@
                             <goal>addTestSources</goal>
                             <goal>compileTests</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-bundle-plugin</artifactId>
+                <version>3.7.1</version>
+                <extensions>false</extensions>
+                <configuration>
+                    <supportIncrementalBuild>true</supportIncrementalBuild>
+                    <noWarningProjectTypes>pom</noWarningProjectTypes>
+                    <excludeDependencies>${camel.osgi.exclude.dependencies}</excludeDependencies>
+                    <instructions>
+                        <Bundle-Name>${project.artifactId}</Bundle-Name>
+                        <Bundle-SymbolicName>${camel.osgi.symbolic.name}</Bundle-SymbolicName>
+                        <Bundle-Activator>${camel.osgi.activator}</Bundle-Activator>
+                        <Import-Package>${camel.osgi.import}</Import-Package>
+                        <Export-Package>${camel.osgi.export}</Export-Package>
+                        <DynamicImport-Package>${camel.osgi.dynamic}</DynamicImport-Package>
+                        <Private-Package>${camel.osgi.private.pkg}</Private-Package>
+                        <Require-Capability>${camel.osgi.require.capability}</Require-Capability>
+                        <Provide-Capability>${camel.osgi.provide.capability}</Provide-Capability>
+                        <Implementation-Title>Apache Camel</Implementation-Title>
+                        <Implementation-Version>3.7.1</Implementation-Version>
+                        <Karaf-Info>Camel;${project.artifactId}=3.7.1</Karaf-Info>
+                        <_versionpolicy>${camel.osgi.import.default.version}</_versionpolicy>
+                        <_failok>${camel.osgi.failok}</_failok>
+                        <_removeheaders>Bnd-LastModified</_removeheaders>
+                        <_plugin>
+                            org.apache.felix.bundleplugin.BlueprintPlugin,
+                            aQute.lib.spring.SpringXMLType,
+                            org.apache.felix.bundleplugin.JpaPlugin,
+                            org.apache.camel.maven.bundle.CamelPlugin
+                        </_plugin>
+                    </instructions>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>versions</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>cleanVersions</goal>
+                        </goals>
+                        <configuration>
+                            <versions>
+                                <camel.osgi.version.clean>3.7.1</camel.osgi.version.clean>
+                            </versions>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>bundle-manifest</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>manifest</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-format-plugin</artifactId>
+                <version>3.7.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-package-maven-plugin</artifactId>
+                <version>3.7.1</version>
+                <configuration>
+                    <!-- set to true to make build fail fast if missing documentation in docs files -->
+                    <failFast>false</failFast>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>generate</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <phase>process-classes</phase>
+                    </execution>
+                    <execution>
+                        <id>generate-postcompile</id>
+                        <goals>
+                            <goal>generate-postcompile</goal>
+                        </goals>
+                        <phase>prepare-package</phase>
                     </execution>
                 </executions>
             </plugin>
@@ -282,7 +379,7 @@
                                             </files>
                                             <message><![CDATA[Salesforce Migration Tool required
 
-You need to download the Salesforce Migration Tool (ZIP file) and 
+You need to download the Salesforce Migration Tool (ZIP file) and
 extract the `ant-salesforce.jar` out of it to:
 
 ${salesforce.component.root}/it/resources/migration-tool/ant-salesforce.jar
@@ -442,4 +539,15 @@ https://developer.salesforce.com/page/Force.com_Migration_Tool]]></message>
             </build>
         </profile>
     </profiles>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>camel</id>
+            <url>https://pkgs.dev.azure.com/ideaportriga/streaming-platform/_packaging/camel/maven/v1</url>
+        </snapshotRepository>
+        <repository>
+            <id>camel</id>
+            <url>https://pkgs.dev.azure.com/ideaportriga/streaming-platform/_packaging/camel/maven/v1</url>
+        </repository>
+    </distributionManagement>
 </project>

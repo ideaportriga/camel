@@ -1,7 +1,7 @@
 [[salesforce-component]]
 = Salesforce Component
 //THIS FILE IS COPIED: EDIT THE SOURCE FILE:
-:page-source: components/camel-salesforce/camel-salesforce-component/src/main/docs/salesforce-component.adoc
+:page-source: componentscamel-salesforcecamel-salesforce-componentsrcmaindocssalesforce-component.adoc
 :docTitle: Salesforce
 :artifactId: camel-salesforce
 :description: Communicate with Salesforce using Java DTOs.
@@ -685,7 +685,7 @@ for details on how to generate the DTO.
 
 
 // component options: START
-The Salesforce component supports 74 options, which are listed below.
+The Salesforce component supports 79 options, which are listed below.
 
 
 
@@ -699,6 +699,11 @@ The Salesforce component supports 74 options, which are listed below.
 | *batchId* (common) | Bulk API Batch ID |  | String
 | *contentType* (common) | Bulk API content type, one of XML, CSV, ZIP_XML, ZIP_CSV. There are 6 enums and the value can be one of: XML, CSV, JSON, ZIP_XML, ZIP_CSV, ZIP_JSON |  | ContentType
 | *defaultReplayId* (common) | Default replayId setting if no value is found in initialReplayIdMap | -1 | Long
+| *etCdRepoCacheDepth* (common) | ETCD repository cache size depth |  | String
+| *etcdRepoPassword* (common) | ETCD repository password |  | String
+| *etcdRepoPlaceholderValue* (common) | ETCD repository field for testing |  | String
+| *etcdRepoUri* (common) | ETCD repository URIs |  | String
+| *etcdRepoUsername* (common) | ETCD repository username |  | String
 | *format* (common) | Payload format to use for Salesforce API calls, either JSON or XML, defaults to JSON. There are 2 enums and the value can be one of: JSON, XML |  | PayloadFormat
 | *httpClient* (common) | Custom Jetty Http Client to use to connect to Salesforce. |  | SalesforceHttpClient
 | *httpClientConnectionTimeout* (common) | Connection timeout used by the HttpClient when connecting to the Salesforce server. | 60000 | long
@@ -798,7 +803,7 @@ with the following path and query parameters:
 |===
 
 
-=== Query Parameters (45 parameters):
+=== Query Parameters (50 parameters):
 
 
 [width="100%",cols="2,5,^1,2",options="header"]
@@ -811,6 +816,11 @@ with the following path and query parameters:
 | *batchId* (common) | Bulk API Batch ID |  | String
 | *contentType* (common) | Bulk API content type, one of XML, CSV, ZIP_XML, ZIP_CSV. There are 6 enums and the value can be one of: XML, CSV, JSON, ZIP_XML, ZIP_CSV, ZIP_JSON |  | ContentType
 | *defaultReplayId* (common) | Default replayId setting if no value is found in initialReplayIdMap | -1 | Long
+| *etCdRepoCacheDepth* (common) | ETCD repository cache size depth |  | String
+| *etcdRepoPassword* (common) | ETCD repository password |  | String
+| *etcdRepoPlaceholderValue* (common) | ETCD repository field for testing |  | String
+| *etcdRepoUri* (common) | ETCD repository URIs |  | String
+| *etcdRepoUsername* (common) | ETCD repository username |  | String
 | *format* (common) | Payload format to use for Salesforce API calls, either JSON or XML, defaults to JSON. There are 2 enums and the value can be one of: JSON, XML |  | PayloadFormat
 | *httpClient* (common) | Custom Jetty Http Client to use to connect to Salesforce. |  | SalesforceHttpClient
 | *includeDetails* (common) | Include details in Salesforce1 Analytics report, defaults to false. |  | Boolean

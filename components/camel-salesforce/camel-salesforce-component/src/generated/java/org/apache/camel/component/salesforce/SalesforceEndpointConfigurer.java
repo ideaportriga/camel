@@ -41,6 +41,16 @@ public class SalesforceEndpointConfigurer extends PropertyConfigurerSupport impl
         case "contentType": target.getConfiguration().setContentType(property(camelContext, org.apache.camel.component.salesforce.api.dto.bulk.ContentType.class, value)); return true;
         case "defaultreplayid":
         case "defaultReplayId": target.getConfiguration().setDefaultReplayId(property(camelContext, java.lang.Long.class, value)); return true;
+        case "etcdrepocachedepth":
+        case "etCdRepoCacheDepth": target.getConfiguration().setEtCdRepoCacheDepth(property(camelContext, java.lang.String.class, value)); return true;
+        case "etcdrepopassword":
+        case "etcdRepoPassword": target.getConfiguration().setEtcdRepoPassword(property(camelContext, java.lang.String.class, value)); return true;
+        case "etcdrepoplaceholdervalue":
+        case "etcdRepoPlaceholderValue": target.getConfiguration().setEtcdRepoPlaceholderValue(property(camelContext, java.lang.String.class, value)); return true;
+        case "etcdrepouri":
+        case "etcdRepoUri": target.getConfiguration().setEtcdRepoUri(property(camelContext, java.lang.String.class, value)); return true;
+        case "etcdrepousername":
+        case "etcdRepoUsername": target.getConfiguration().setEtcdRepoUsername(property(camelContext, java.lang.String.class, value)); return true;
         case "exceptionhandler":
         case "exceptionHandler": target.setExceptionHandler(property(camelContext, org.apache.camel.spi.ExceptionHandler.class, value)); return true;
         case "exchangepattern":
@@ -135,6 +145,16 @@ public class SalesforceEndpointConfigurer extends PropertyConfigurerSupport impl
         case "contentType": return org.apache.camel.component.salesforce.api.dto.bulk.ContentType.class;
         case "defaultreplayid":
         case "defaultReplayId": return java.lang.Long.class;
+        case "etcdrepocachedepth":
+        case "etCdRepoCacheDepth": return java.lang.String.class;
+        case "etcdrepopassword":
+        case "etcdRepoPassword": return java.lang.String.class;
+        case "etcdrepoplaceholdervalue":
+        case "etcdRepoPlaceholderValue": return java.lang.String.class;
+        case "etcdrepouri":
+        case "etcdRepoUri": return java.lang.String.class;
+        case "etcdrepousername":
+        case "etcdRepoUsername": return java.lang.String.class;
         case "exceptionhandler":
         case "exceptionHandler": return org.apache.camel.spi.ExceptionHandler.class;
         case "exchangepattern":
@@ -230,6 +250,16 @@ public class SalesforceEndpointConfigurer extends PropertyConfigurerSupport impl
         case "contentType": return target.getConfiguration().getContentType();
         case "defaultreplayid":
         case "defaultReplayId": return target.getConfiguration().getDefaultReplayId();
+        case "etcdrepocachedepth":
+        case "etCdRepoCacheDepth": return target.getConfiguration().getEtCdRepoCacheDepth();
+        case "etcdrepopassword":
+        case "etcdRepoPassword": return target.getConfiguration().getEtcdRepoPassword();
+        case "etcdrepoplaceholdervalue":
+        case "etcdRepoPlaceholderValue": return target.getConfiguration().getEtcdRepoPlaceholderValue();
+        case "etcdrepouri":
+        case "etcdRepoUri": return target.getConfiguration().getEtcdRepoUri();
+        case "etcdrepousername":
+        case "etcdRepoUsername": return target.getConfiguration().getEtcdRepoUsername();
         case "exceptionhandler":
         case "exceptionHandler": return target.getExceptionHandler();
         case "exchangepattern":

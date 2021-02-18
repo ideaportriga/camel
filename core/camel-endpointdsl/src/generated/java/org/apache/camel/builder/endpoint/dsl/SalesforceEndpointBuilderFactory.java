@@ -217,6 +217,80 @@ public interface SalesforceEndpointBuilderFactory {
             return this;
         }
         /**
+         * ETCD repository cache size depth.
+         * 
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param etCdRepoCacheDepth the value to set
+         * @return the dsl builder
+         */
+        default SalesforceEndpointConsumerBuilder etCdRepoCacheDepth(
+                String etCdRepoCacheDepth) {
+            doSetProperty("etCdRepoCacheDepth", etCdRepoCacheDepth);
+            return this;
+        }
+        /**
+         * ETCD repository password.
+         * 
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param etcdRepoPassword the value to set
+         * @return the dsl builder
+         */
+        default SalesforceEndpointConsumerBuilder etcdRepoPassword(
+                String etcdRepoPassword) {
+            doSetProperty("etcdRepoPassword", etcdRepoPassword);
+            return this;
+        }
+        /**
+         * ETCD repository field for testing.
+         * 
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param etcdRepoPlaceholderValue the value to set
+         * @return the dsl builder
+         */
+        default SalesforceEndpointConsumerBuilder etcdRepoPlaceholderValue(
+                String etcdRepoPlaceholderValue) {
+            doSetProperty("etcdRepoPlaceholderValue", etcdRepoPlaceholderValue);
+            return this;
+        }
+        /**
+         * ETCD repository URIs.
+         * 
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param etcdRepoUri the value to set
+         * @return the dsl builder
+         */
+        default SalesforceEndpointConsumerBuilder etcdRepoUri(String etcdRepoUri) {
+            doSetProperty("etcdRepoUri", etcdRepoUri);
+            return this;
+        }
+        /**
+         * ETCD repository username.
+         * 
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param etcdRepoUsername the value to set
+         * @return the dsl builder
+         */
+        default SalesforceEndpointConsumerBuilder etcdRepoUsername(
+                String etcdRepoUsername) {
+            doSetProperty("etcdRepoUsername", etcdRepoUsername);
+            return this;
+        }
+        /**
          * Payload format to use for Salesforce API calls, either JSON or XML,
          * defaults to JSON.
          * 
@@ -1338,6 +1412,80 @@ public interface SalesforceEndpointBuilderFactory {
             return this;
         }
         /**
+         * ETCD repository cache size depth.
+         * 
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param etCdRepoCacheDepth the value to set
+         * @return the dsl builder
+         */
+        default SalesforceEndpointProducerBuilder etCdRepoCacheDepth(
+                String etCdRepoCacheDepth) {
+            doSetProperty("etCdRepoCacheDepth", etCdRepoCacheDepth);
+            return this;
+        }
+        /**
+         * ETCD repository password.
+         * 
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param etcdRepoPassword the value to set
+         * @return the dsl builder
+         */
+        default SalesforceEndpointProducerBuilder etcdRepoPassword(
+                String etcdRepoPassword) {
+            doSetProperty("etcdRepoPassword", etcdRepoPassword);
+            return this;
+        }
+        /**
+         * ETCD repository field for testing.
+         * 
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param etcdRepoPlaceholderValue the value to set
+         * @return the dsl builder
+         */
+        default SalesforceEndpointProducerBuilder etcdRepoPlaceholderValue(
+                String etcdRepoPlaceholderValue) {
+            doSetProperty("etcdRepoPlaceholderValue", etcdRepoPlaceholderValue);
+            return this;
+        }
+        /**
+         * ETCD repository URIs.
+         * 
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param etcdRepoUri the value to set
+         * @return the dsl builder
+         */
+        default SalesforceEndpointProducerBuilder etcdRepoUri(String etcdRepoUri) {
+            doSetProperty("etcdRepoUri", etcdRepoUri);
+            return this;
+        }
+        /**
+         * ETCD repository username.
+         * 
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param etcdRepoUsername the value to set
+         * @return the dsl builder
+         */
+        default SalesforceEndpointProducerBuilder etcdRepoUsername(
+                String etcdRepoUsername) {
+            doSetProperty("etcdRepoUsername", etcdRepoUsername);
+            return this;
+        }
+        /**
          * Payload format to use for Salesforce API calls, either JSON or XML,
          * defaults to JSON.
          * 
@@ -2389,6 +2537,80 @@ public interface SalesforceEndpointBuilderFactory {
             return this;
         }
         /**
+         * ETCD repository cache size depth.
+         * 
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param etCdRepoCacheDepth the value to set
+         * @return the dsl builder
+         */
+        default SalesforceEndpointBuilder etCdRepoCacheDepth(
+                String etCdRepoCacheDepth) {
+            doSetProperty("etCdRepoCacheDepth", etCdRepoCacheDepth);
+            return this;
+        }
+        /**
+         * ETCD repository password.
+         * 
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param etcdRepoPassword the value to set
+         * @return the dsl builder
+         */
+        default SalesforceEndpointBuilder etcdRepoPassword(
+                String etcdRepoPassword) {
+            doSetProperty("etcdRepoPassword", etcdRepoPassword);
+            return this;
+        }
+        /**
+         * ETCD repository field for testing.
+         * 
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param etcdRepoPlaceholderValue the value to set
+         * @return the dsl builder
+         */
+        default SalesforceEndpointBuilder etcdRepoPlaceholderValue(
+                String etcdRepoPlaceholderValue) {
+            doSetProperty("etcdRepoPlaceholderValue", etcdRepoPlaceholderValue);
+            return this;
+        }
+        /**
+         * ETCD repository URIs.
+         * 
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param etcdRepoUri the value to set
+         * @return the dsl builder
+         */
+        default SalesforceEndpointBuilder etcdRepoUri(String etcdRepoUri) {
+            doSetProperty("etcdRepoUri", etcdRepoUri);
+            return this;
+        }
+        /**
+         * ETCD repository username.
+         * 
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param etcdRepoUsername the value to set
+         * @return the dsl builder
+         */
+        default SalesforceEndpointBuilder etcdRepoUsername(
+                String etcdRepoUsername) {
+            doSetProperty("etcdRepoUsername", etcdRepoUsername);
+            return this;
+        }
+        /**
          * Payload format to use for Salesforce API calls, either JSON or XML,
          * defaults to JSON.
          * 
@@ -3230,7 +3452,7 @@ public interface SalesforceEndpointBuilderFactory {
          * 
          * Category: cloud,api,crm
          * Since: 2.12
-         * Maven coordinates: org.apache.camel:camel-salesforce
+         * Maven coordinates: lv.ipr.camel:camel-salesforce
          * 
          * Syntax: <code>salesforce:operationName:topicName</code>
          * 
@@ -3263,7 +3485,7 @@ public interface SalesforceEndpointBuilderFactory {
          * 
          * Category: cloud,api,crm
          * Since: 2.12
-         * Maven coordinates: org.apache.camel:camel-salesforce
+         * Maven coordinates: lv.ipr.camel:camel-salesforce
          * 
          * Syntax: <code>salesforce:operationName:topicName</code>
          * 

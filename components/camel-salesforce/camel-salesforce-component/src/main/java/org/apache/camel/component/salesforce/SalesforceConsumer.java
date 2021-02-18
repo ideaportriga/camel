@@ -19,6 +19,7 @@ package org.apache.camel.component.salesforce;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.camel.AsyncCallback;
@@ -78,10 +79,13 @@ public class SalesforceConsumer extends DefaultConsumer {
     private final boolean rawPayload;
     private final Class<?> sObjectClass;
     private boolean subscribed;
+    private final AtomicBoolean stopReplayIdRepo = new AtomicBoolean();
     private final SubscriptionHelper subscriptionHelper;
+    private final EtcdReplayIdRepository etcdReplayIdRepository;
     private final String topicName;
 
-    public SalesforceConsumer(final SalesforceEndpoint endpoint, final Processor processor, final SubscriptionHelper helper) {
+    public SalesforceConsumer(final SalesforceEndpoint endpoint, final Processor processor, final SubscriptionHelper helper,
+                              final EtcdReplayIdRepository etcdReplayIdRepo) {
         super(endpoint, processor);
         this.endpoint = endpoint;
         final ObjectMapper configuredObjectMapper = endpoint.getConfiguration().getObjectMapper();
@@ -98,6 +102,7 @@ public class SalesforceConsumer extends DefaultConsumer {
 
         topicName = endpoint.getTopicName();
         subscriptionHelper = helper;
+        etcdReplayIdRepository = etcdReplayIdRepo;
 
         messageKind = MessageKind.fromTopicName(topicName);
 
@@ -229,6 +234,9 @@ public class SalesforceConsumer extends DefaultConsumer {
         final Object replayId = event.get(REPLAY_ID_PROPERTY);
         if (replayId != null) {
             in.setHeader("CamelSalesforceReplayId", replayId);
+            if (etcdReplayIdRepository.isStarted()) {
+                etcdReplayIdRepository.setState(topicName, String.valueOf(replayId));
+            }
         }
 
         in.setHeader("CamelSalesforcePlatformEventSchema", data.get(SCHEMA_PROPERTY));
@@ -304,6 +312,13 @@ public class SalesforceConsumer extends DefaultConsumer {
 
         final SalesforceEndpointConfig config = endpoint.getConfiguration();
 
+        // start ETCD repo if it's configured
+        if (ObjectHelper.isNotEmpty(config.getEtcdRepoUri())) {
+            ServiceHelper.startService(etcdReplayIdRepository);
+            LOG.info("Starting EctdReplayIdRepository with uri: {}", config.getEtcdRepoUri());
+            stopReplayIdRepo.set(true);
+        }
+
         // is a query configured in the endpoint?
         if (messageKind == MessageKind.PUSH_TOPIC && ObjectHelper.isNotEmpty(config.getSObjectQuery())) {
             // Note that we don't lookup topic if the query is not specified
@@ -337,6 +352,12 @@ public class SalesforceConsumer extends DefaultConsumer {
             subscribed = false;
             // unsubscribe from topic
             subscriptionHelper.unsubscribe(topicName, this);
+        }
+
+        // if we've started it, we'll kill it
+        if (stopReplayIdRepo.compareAndSet(true, false)) {
+            LOG.info("Stopping EtcdReplayIdRepository with uri: {}", endpoint.getConfiguration().getEtcdRepoUri());
+            ServiceHelper.stopAndShutdownService(etcdReplayIdRepository);
         }
     }
 
